@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid" id="menuBar">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WatchList</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" style="border-right:1px solid #4b4a4a">Movies</a>
+                </li>
+                <li>
+                    <a href="#">Tv</a>
+                </li>
+                <li>
+                    <a href="#" id="mostPopular">Most Popular</a>
+                </li>
+                <li>
+                    <a href="" id="order">
+                        <i class="fas fa-sort-alpha-up"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" id="options">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" id="grid">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <ul id="authors">
+        </ul>
+    </div>
+    <script>
+        const ul = document.getElementById('authors');
+        const url = 'http://api.tvmaze.com/shows/1/episodes';
+        fetch(url)
+            .then((resp) => resp.json())
+            .then(function (data) {
+              
+                let videos = data;
+                $.each(videos,function(i,author){
+                    console.log(author);
+                    $("#authors").append("<li style='display:inline'><span class='stylebox' style='color:white'>"+author.name+"</span><a target='_blank' href='"+author.url+"'><img src='" + author.image.medium + "'/></a><br><div>.</div></li>");
+                })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });   
+    </script>
+</body>
+
+</html>
