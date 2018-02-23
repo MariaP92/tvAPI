@@ -57,7 +57,7 @@
     </div>
     <script>
         const ul = document.getElementById('authors');
-        const url = 'http://api.tvmaze.com/shows/1/episodes';
+        const url = 'https://api.tvmaze.com/shows/1/episodes';
         fetch(url)
             .then((resp) => resp.json())
             .then(function (data) {
